@@ -3,10 +3,9 @@
 Exercises:
 
 1. Count and print how many taps occur.
-2. Decrease the number of tiles to a 4x4 grid.
 3. Detect when all tiles are revealed.
-4. Center single-digit tile.
-5. Use letters instead of tiles.
+4. Center single-digit tile.-Iñaki
+5. Use letters instead of tiles.-Iñaki
 """
 
 from random import *
@@ -18,6 +17,8 @@ car = path('car.gif')
 tiles = list(range(32)) * 2
 state = {'mark': None}
 hide = [True] * 64
+letters=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e']
+
 
 
 def square(x, y):
@@ -48,7 +49,7 @@ def tap(x, y):
     spot = index(x, y)
     mark = state['mark']
 
-    if mark is None or mark == spot or tiles[mark] != tiles[spot]:
+    if mark is None or mark == spot or letters[mark] != letters[spot]:
         state['mark'] = spot
     else:
         hide[spot] = False
@@ -70,18 +71,21 @@ def draw():
 
     mark = state['mark']
 
+
     if mark is not None and hide[mark]:
+        s=str(letters[mark])
+        s2=s.center(3,' ')
         x, y = xy(mark)
         up()
         goto(x + 2, y)
         color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        write(s2, font=('Arial', 30, 'normal'))
 
     update()
     ontimer(draw, 100)
 
 
-shuffle(tiles)
+shuffle(letters)
 setup(420, 420, 370, 0)
 addshape(car)
 hideturtle()
