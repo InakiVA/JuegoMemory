@@ -2,8 +2,8 @@
 
 Exercises:
 
-1. Count and print how many taps occur.
-3. Detect when all tiles are revealed.
+1. Count and print how many taps occur.-Edrick
+3. Detect when all tiles are revealed.-Edrick
 4. Center single-digit tile.-Iñaki
 5. Use letters instead of tiles.-Iñaki
 """
