@@ -18,8 +18,8 @@ tiles = list(range(32)) * 2
 state = {'mark': None}
 hide = [True] * 64
 letters=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e']
-
-
+Numero_de_taps=0
+Numero_de_aciertos=0
 
 def square(x, y):
     """Draw white square with black outline at (x, y)."""
@@ -51,15 +51,26 @@ def tap(x, y):
 
     if mark is None or mark == spot or letters[mark] != letters[spot]:
         state['mark'] = spot
+        
     else:
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+        global Numero_de_aciertos
+        Numero_de_aciertos +=1
+        
+    global Numero_de_taps
+    Numero_de_taps += 1
+    print(Numero_de_taps)
+    if Numero_de_aciertos ==32:
+        print("Ya ganaste")
+
 
 
 def draw():
     """Draw image and tiles."""
     clear()
+
     goto(0, 0)
     shape(car)
     stamp()
@@ -80,13 +91,16 @@ def draw():
         goto(x + 2, y)
         color('black')
         write(s2, font=('Arial', 30, 'normal'))
-
+    up()
+    goto(0,0)
+    color("black")
+    write(Numero_de_taps, font=('Arial',30,'normal'))
     update()
     ontimer(draw, 100)
 
 
 shuffle(letters)
-setup(420, 420, 370, 0)
+setup(520, 520, 470, 0)
 addshape(car)
 hideturtle()
 tracer(False)
